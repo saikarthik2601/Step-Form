@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review & Confirmation</title>
+    <link rel="stylesheet" href="review-details.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Review & Confirmation</h2>
+    <p class="subtitle">Please review your details before final submission</p>
+
+    <!-- PERSONAL INFO -->
+    <div class="card">
+        <div class="card-header">
+            <h3>Personal Information</h3>
+            <button onclick="editPage('personal-info.html')">Edit</button>
+        </div>
+        <div class="card-body">
+            <p><strong>Name:</strong> <span id="r_name"></span></p>
+            <p><strong>Gender:</strong> <span id="r_gender"></span></p>
+            <p><strong>DOB:</strong> <span id="r_dob"></span></p>
+            <p><strong>Contact:</strong> <span id="r_contact"></span></p>
+            <p><strong>Email:</strong> <span id="r_email"></span></p>
+            <p><strong>Address:</strong> <span id="r_address"></span></p>
+        </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="card">
+        <div class="card-header">
+            <h3>Education Details</h3>
+            <button onclick="editPage('education-info.html')">Edit</button>
+        </div>
+        <div class="card-body">
+            <p><strong>Qualification:</strong> <span id="r_qualification"></span></p>
+            <p><strong>Academic Details:</strong> <span id="r_academic"></span></p>
+        </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="card">
+        <div class="card-header">
+            <h3>Experience Details</h3>
+            <button onclick="editPage('experience-info.html')">Edit</button>
+        </div>
+        <div class="card-body" id="experienceBlock">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+
+    <button class="submit-btn">Confirm & Submit</button>
+</div>
+
+<script src="review-details.js"></script>
+</body>
+</html>

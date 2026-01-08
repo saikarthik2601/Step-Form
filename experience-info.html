@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Experience Details</title>
+    <link rel="stylesheet" href="experience-info.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Experience Details</h2>
+
+    <form id="experienceForm">
+
+        <div class="section">
+            <h3>Experience Status</h3>
+
+            <div class="field">
+                <select id="experienceStatus">
+                    <option value="">Select Status</option>
+                    <option value="fresher">Fresher</option>
+                    <option value="experienced">Experienced</option>
+                </select>
+                <small class="error-msg"></small>
+            </div>
+        </div>
+
+        <!-- EXPERIENCED -->
+        <div id="experiencedSection" style="display:none;">
+
+            <div class="section">
+                <h3>Experience</h3>
+
+                <div class="field">
+                    <input type="text" id="companyName" placeholder="Company Name">
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="field">
+                    <input type="text" id="jobTitle" placeholder="Job Title / Designation">
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="field">
+                    <input type="text" id="employeeType" placeholder="Employee Type (Full-Time / Contract)">
+                    <small class="error-msg"></small>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Duration</h3>
+
+                <div class="row">
+                    <div class="field">
+                        <input type="date" id="startDate">
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <div class="field">
+                        <input type="date" id="endDate">
+                        <small class="error-msg"></small>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <input type="text" id="totalExperience" placeholder="Total Experience (Years)" readonly>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Compensation</h3>
+
+                <div class="field">
+                    <input type="text" id="lastCTC" placeholder="Last CTC">
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="field">
+                    <input type="text" id="reasonForLeaving" placeholder="Reason for Leaving">
+                    <small class="error-msg"></small>
+                </div>
+            </div>
+        </div>
+
+        <!-- FRESHER -->
+        <div id="fresherSection" style="display:none;">
+
+            <div class="section">
+                <h3>Internship Experience</h3>
+
+                <div class="field">
+                    <select id="internshipStatus">
+                        <option value="">Internship Experience (Yes / No)</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <small class="error-msg"></small>
+                </div>
+
+                <div id="internshipDetails" style="display:none;">
+                    <div class="field">
+                        <input type="text" id="internshipCompany" placeholder="Internship Company Name">
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <div class="field">
+                        <input type="text" id="internshipDuration" placeholder="Internship Duration">
+                        <small class="error-msg"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Next</button>
+    </form>
+</div>
+
+<script src="experience-info.js"></script>
+</body>
+</html>

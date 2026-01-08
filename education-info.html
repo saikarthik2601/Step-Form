@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Onboarding - Educational Details</title>
+    <link rel="stylesheet" href="education-info.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Educational Details</h2>
+
+    <form id="educationForm">
+
+        <div class="section">
+            <h3>Qualification</h3>
+
+            <div class="row">
+                <div class="field">
+                    <select id="qualification">
+                        <option value="">Select Qualification</option>
+                        <option>10th</option>
+                        <option>12th</option>
+                        <option>Diploma</option>
+                        <option>Graduation</option>
+                        <option>Post Graduation</option>
+                    </select>
+                    <span class="error-msg"></span>
+                </div>
+                <div class="field">
+                    <input type="text" id="course" placeholder="Course">
+                    <span class="error-msg"></span>
+                </div>
+            </div>
+
+            <input type="text" id="branch" placeholder="Branch / Specialization">
+            <span class="error-msg"></span>
+        </div>
+
+        <div class="section">
+            <h3>Institution Details</h3>
+
+            <div class="row">
+                <div class="field">
+                    <select id="institutionType">
+                        <option value="">Select Institution Type</option>
+                        <option>College</option>
+                        <option>University</option>
+                    </select>
+                    <span class="error-msg"></span>
+                </div>
+                <div class="field">
+                    <input type="text" id="institutionName" placeholder="College / University Name">
+                    <span class="error-msg"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <input type="text" id="location" placeholder="Location (City, State)">
+                    <span class="error-msg"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Academic Details</h3>
+
+            <div class="row">
+                <div class="field">
+                    <input type="number" id="yearOfPass" placeholder="Year of Passing">
+                    <span class="error-msg"></span>
+                </div>
+                <div class="field">
+                    <input type="text" id="percentage" placeholder="Percentage / CGPA">
+                    <span class="error-msg"></span>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Next</button>
+    </form>
+</div>
+
+<script src="education-info.js"></script>
+</body>
+</html>
