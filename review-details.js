@@ -1,9 +1,8 @@
-// Redirect to edit pages
 function editPage(page) {
     window.location.href = page;
 }
 
-/* ---------- PERSONAL INFO ---------- */
+/* PERSONAL INFO */
 const personal = JSON.parse(localStorage.getItem("personalInfo")) || {};
 
 document.getElementById("r_name").textContent =
@@ -15,7 +14,7 @@ document.getElementById("r_email").textContent = personal.email || personal.emai
 document.getElementById("r_address").textContent =
     personal.currentAddress ? `${personal.currentAddress}, ${personal.city || ""}` : "-";
 
-/* ---------- EDUCATION ---------- */
+/* EDUCATION */
 const education = JSON.parse(localStorage.getItem("educationInfo")) || {};
 
 document.getElementById("r_qualification").textContent =
@@ -24,14 +23,13 @@ document.getElementById("r_qualification").textContent =
 document.getElementById("r_academic").textContent =
     `${education.course || ""}, ${education.branch || ""}, ${education.college || ""}` || "-";
 
-/* ---------- EXPERIENCE ---------- */
+/* EXPERIENCE */
 const experience = JSON.parse(localStorage.getItem("experienceInfo")) || {};
 const experienceBlock = document.getElementById("experienceBlock");
 
-// Clear first
 experienceBlock.innerHTML = "";
 
-/* ---- FRESHER ---- */
+/* FRESHER */
 if (experience.experienceStatus === "fresher") {
     experienceBlock.innerHTML = `
         <p><strong>Status:</strong> Fresher</p>
@@ -41,7 +39,7 @@ if (experience.experienceStatus === "fresher") {
     `;
 }
 
-/* ---- EXPERIENCED ---- */
+/* EXPERIENCED */
 else if (experience.experienceStatus === "experienced") {
     experienceBlock.innerHTML = `
         <p><strong>Status:</strong> Experienced</p>
@@ -52,7 +50,7 @@ else if (experience.experienceStatus === "experienced") {
     `;
 }
 
-/* ---- NO DATA ---- */
+/* NO DATA */
 else {
     experienceBlock.innerHTML = `<p>No experience details available</p>`;
 }

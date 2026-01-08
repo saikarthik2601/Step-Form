@@ -37,6 +37,12 @@ h2 {
     margin-bottom: 10px;
 }
 
+.field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 input, select {
     width: 100%;
     padding: 10px;
@@ -70,8 +76,3 @@ input.error, select.error {
     display: block;
 }
 
-.field {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}

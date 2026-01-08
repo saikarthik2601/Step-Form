@@ -94,14 +94,14 @@ form.addEventListener("submit", e => {
 
     if (valid) {
         let experienceData = {
-            experienceStatus: experienceStatus.value // ✅ FIX 1
+            experienceStatus: experienceStatus.value 
         };
 
         if (experienceStatus.value === "experienced") {
             experienceData.companyName = companyName.value;
-            experienceData.role = jobTitle.value;            // ✅ FIX 2
-            experienceData.duration = totalExperience.value; // ✅ FIX 3
-            experienceData.ctc = lastCTC.value;              // ✅ FIX 4
+            experienceData.role = jobTitle.value;            
+            experienceData.duration = totalExperience.value; 
+            experienceData.ctc = lastCTC.value;              
         }
 
         if (experienceStatus.value === "fresher") {

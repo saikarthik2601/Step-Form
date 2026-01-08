@@ -38,6 +38,12 @@ h2 {
     margin-bottom: 10px;
 }
 
+.field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 input, select, textarea {
     width: 100%;
     padding: 10px;
@@ -78,9 +84,3 @@ input.error, select.error, textarea.error {
     border-color: red;
 }
 
-/* ===== ADDITION ONLY (REQUIRED FIX) ===== */
-.field {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
