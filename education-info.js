@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("educationForm");
 
-  /* --- DOM References --- */
+  /* DOM References */
   const qualification = document.getElementById("qualification");
   const stream = document.getElementById("stream");
   const passingYear = document.getElementById("passingYear");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let isValid = true;
 
-    /* --- HIGHEST QUALIFICATION VALIDATION --- */
+    /* HIGHEST QUALIFICATION VALIDATION */
     if (!qualification.value) {
       showError(qualification, "Select your qualification");
       isValid = false;
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
       isValid = false;
     }
 
-    /* --- GRADUATION / POST-GRADUATION VALIDATION --- */
+    /* GRADUATION / POST-GRADUATION VALIDATION */
     if (college.value.trim().length < 2) {
       showError(college, "Enter college / university name");
       isValid = false;
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       isValid = false;
     }
 
-    /* --- CERTIFICATIONS OPTIONAL --- */
+    /* CERTIFICATIONS OPTIONAL */
     if (certName.value.trim().length > 0 && instName.value.trim().length === 0) {
       showError(instName, "Enter institute for certification");
       isValid = false;
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
       isValid = false;
     }
 
-    /* --- SAVE TO localStorage IF VALID --- */
+    /* SAVE TO localStorage IF VALID */
     if (isValid) {
       const page2Data = {
         qualification: qualification.value,
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-/* --- UTIL FUNCTIONS --- */
+/* UTIL FUNCTIONS */
 function showError(input, message) {
   input.classList.add("error-border");
   const nextEl = input.nextElementSibling;
