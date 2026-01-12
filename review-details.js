@@ -79,13 +79,10 @@ document.addEventListener("DOMContentLoaded", function () {
   reviewForm.addEventListener("submit", function (e) {
     e.preventDefault();
     // Combine all data
-    const finalData = {
-      personal: page1,
-      education: page2,
-      experience: page3
-    };
+    const finalData = {personal: page1,education: page2,experience: page3};
     console.log("Final Employee Data:", finalData);
     alert("Form submitted successfully! Check console for data.");
+    // window.location.href = "index.html";
     // localStorage.clear();
   });
 
