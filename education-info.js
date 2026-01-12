@@ -1,63 +1,120 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-    const form = document.getElementById("educationForm");
+  const form = document.getElementById("educationForm");
 
-    function showError(input, message) {
-        input.classList.add("error");
-        input.nextElementSibling.textContent = message;
+  /* --- DOM References --- */
+  const qualification = document.getElementById("qualification");
+  const stream = document.getElementById("stream");
+  const passingYear = document.getElementById("passingYear");
+  const percentage = document.getElementById("percentage");
+
+  const college = document.getElementById("college");
+  const courseName = document.getElementById("courseName");
+  const gradPassingYear = document.getElementById("gradPassingYear");
+  const gradPercentage = document.getElementById("gradPercentage");
+
+  const certName = document.getElementById("certName");
+  const instName = document.getElementById("instName");
+  const certYear = document.getElementById("certYear");
+
+  const currentYear = new Date().getFullYear();
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearErrors();
+
+    let isValid = true;
+
+    /* --- HIGHEST QUALIFICATION VALIDATION --- */
+    if (!qualification.value) {
+      showError(qualification, "Select your qualification");
+      isValid = false;
     }
 
-    function clearErrors() {
-        document.querySelectorAll(".error").forEach(el => el.classList.remove("error"));
-        document.querySelectorAll(".error-msg").forEach(el => el.textContent = "");
+    if ((qualification.value === "Graduation" || qualification.value === "Post-Graduation") && stream.value.trim().length < 2) {
+      showError(stream, "Enter your stream / field");
+      isValid = false;
     }
 
-    form.addEventListener("submit", e => {
-        e.preventDefault();
-        clearErrors();
+    if (!passingYear.value || passingYear.value < 1900 || passingYear.value > currentYear) {
+      showError(passingYear, "Enter valid passing year");
+      isValid = false;
+    }
 
-        let valid = true;
+    if (!percentage.value || isNaN(percentage.value) || percentage.value < 0 || percentage.value > 100) {
+      showError(percentage, "Enter valid percentage / CGPA");
+      isValid = false;
+    }
 
-        const fields = {
-            qualification: document.getElementById("qualification"),
-            course: document.getElementById("course"),
-            branch: document.getElementById("branch"),
-            institutionName: document.getElementById("institutionName"),
-            yearOfPass: document.getElementById("yearOfPass"),
-            percentage: document.getElementById("percentage")
-        };
+    /* --- GRADUATION / POST-GRADUATION VALIDATION --- */
+    if (college.value.trim().length < 2) {
+      showError(college, "Enter college / university name");
+      isValid = false;
+    }
 
-        Object.entries(fields).forEach(([key, field]) => {
-            if (!field.value.trim()) {
-                showError(field, "You have missed this field");
-                valid = false;
-            }
-        });
+    if (courseName.value.trim().length < 2) {
+      showError(courseName, "Enter course name");
+      isValid = false;
+    }
 
-        if (valid) {
-            localStorage.setItem("educationInfo", JSON.stringify({
-                qualification: fields.qualification.value,
-                course: fields.course.value,
-                branch: fields.branch.value,
-                institutionName: fields.institutionName.value,
-                yearOfPass: fields.yearOfPass.value,
-                percentage: fields.percentage.value
-            }));
+    if (!gradPassingYear.value || gradPassingYear.value < 1900 || gradPassingYear.value > currentYear) {
+      showError(gradPassingYear, "Enter valid graduation passing year");
+      isValid = false;
+    }
 
-            alert("Education details saved successfully!");
-            window.location.href = "experience-info.html";
-        }
-    });
+    if (!gradPercentage.value || isNaN(gradPercentage.value) || gradPercentage.value < 0 || gradPercentage.value > 100) {
+      showError(gradPercentage, "Enter valid graduation percentage / CGPA");
+      isValid = false;
+    }
 
-    window.addEventListener("DOMContentLoaded", () => {
-        const edu = JSON.parse(localStorage.getItem("educationInfo"));
-        if (!edu) return;
+    /* --- CERTIFICATIONS OPTIONAL --- */
+    if (certName.value.trim().length > 0 && instName.value.trim().length === 0) {
+      showError(instName, "Enter institute for certification");
+      isValid = false;
+    }
 
-        document.getElementById("qualification").value = edu.qualification || "";
-        document.getElementById("course").value = edu.course || "";
-        document.getElementById("branch").value = edu.branch || "";
-        document.getElementById("college").value = edu.college || "";
-    });
+    if (certYear.value && (certYear.value < 1900 || certYear.value > currentYear)) {
+      showError(certYear, "Enter valid certification year");
+      isValid = false;
+    }
 
+    /* --- SAVE TO localStorage IF VALID --- */
+    if (isValid) {
+      const page2Data = {
+        qualification: qualification.value,
+        stream: stream.value.trim(),
+        passingYear: passingYear.value,
+        percentage: percentage.value,
+        college: college.value.trim(),
+        courseName: courseName.value.trim(),
+        gradPassingYear: gradPassingYear.value,
+        gradPercentage: gradPercentage.value,
+        certifications: [
+          {
+            name: certName.value.trim(),
+            institute: instName.value.trim(),
+            year: certYear.value
+          }
+        ]
+      };
+
+      localStorage.setItem("employeePage2", JSON.stringify(page2Data));
+      alert("Page 2 validated and saved successfully!");
+      window.location.href = "experience-info.html";
+    }
+
+  });
 
 });
+
+/* --- UTIL FUNCTIONS --- */
+function showError(input, message) {
+  input.classList.add("error-border");
+  const nextEl = input.nextElementSibling;
+  if (nextEl) nextEl.textContent = message;
+}
+
+function clearErrors() {
+  document.querySelectorAll(".error").forEach(e => e.textContent = "");
+  document.querySelectorAll(".error-border").forEach(e => e.classList.remove("error-border"));
+}

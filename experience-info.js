@@ -1,143 +1,137 @@
-const experienceStatus = document.getElementById("experienceStatus");
-const experiencedSection = document.getElementById("experiencedSection");
-const fresherSection = document.getElementById("fresherSection");
-const internshipStatus = document.getElementById("internshipStatus");
-const internshipDetails = document.getElementById("internshipDetails");
-const startDate = document.getElementById("startDate");
-const endDate = document.getElementById("endDate");
-const totalExperience = document.getElementById("totalExperience");
-const form = document.getElementById("experienceForm");
+document.addEventListener("DOMContentLoaded", function () {
 
-experienceStatus.addEventListener("change", () => {
-    experiencedSection.style.display = "none";
-    fresherSection.style.display = "none";
+  const form = document.getElementById("experienceForm");
 
-    if (experienceStatus.value === "experienced") {
-        experiencedSection.style.display = "block";
-    } else if (experienceStatus.value === "fresher") {
-        fresherSection.style.display = "block";
+  const experienceRadios = document.getElementsByName("experienceStatus");
+  const internshipRadios = document.getElementsByName("internshipStatus");
+
+  const experienceDetails = document.getElementById("experienceDetails");
+  const internshipDetails = document.getElementById("internshipDetails");
+  const internshipSection = document.getElementById("internshipSection");
+
+  // Experience Fields
+  const companyName = document.getElementById("companyName");
+  const jobTitle = document.getElementById("jobTitle");
+  const startDate = document.getElementById("startDate");
+  const endDate = document.getElementById("endDate");
+  const responsibilities = document.getElementById("responsibilities");
+  const currentlyWorking = document.getElementById("currentlyWorking");
+
+  // Internship Fields
+  const internCompany = document.getElementById("internCompany");
+  const internRole = document.getElementById("internRole");
+  const internDuration = document.getElementById("internDuration");
+
+  const currentYear = new Date().getFullYear();
+
+  // Show / Hide sections based on radio
+  experienceRadios.forEach(radio => {
+    radio.addEventListener("change", function () {
+      if (this.value === "Yes") {
+        experienceDetails.style.display = "block";
+        internshipSection.style.display = "none";
+        internshipDetails.style.display = "none";
+      } else {
+        experienceDetails.style.display = "none";
+        internshipSection.style.display = "block";
+      }
+    });
+  });
+
+  internshipRadios.forEach(radio => {
+    radio.addEventListener("change", function () {
+      if (this.value === "Yes") {
+        internshipDetails.style.display = "block";
+      } else {
+        internshipDetails.style.display = "none";
+      }
+    });
+  });
+
+  // Currently Working Checkbox
+  currentlyWorking.addEventListener("change", function () {
+    if (this.checked) {
+      endDate.value = "";
+      endDate.setAttribute("readonly", true);
+    } else {
+      endDate.removeAttribute("readonly");
     }
-});
+  });
 
-internshipStatus.addEventListener("change", () => {
-    internshipDetails.style.display = internshipStatus.value === "yes" ? "block" : "none";
-});
-
-function calculateExperience() {
-    if (startDate.value && endDate.value) {
-        const start = new Date(startDate.value);
-        const end = new Date(endDate.value);
-        let years = end.getFullYear() - start.getFullYear();
-        if (
-            end.getMonth() < start.getMonth() ||
-            (end.getMonth() === start.getMonth() && end.getDate() < start.getDate())
-        ) years--;
-        totalExperience.value = years + " Years";
-    }
-}
-
-startDate.addEventListener("change", calculateExperience);
-endDate.addEventListener("change", calculateExperience);
-
-function showError(input) {
-    input.classList.add("error");
-    input.nextElementSibling.textContent = "You have missed this field";
-}
-
-function clearErrors() {
-    document.querySelectorAll(".error").forEach(e => e.classList.remove("error"));
-    document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
-}
-
-form.addEventListener("submit", e => {
+  // FORM SUBMIT
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
     clearErrors();
 
-    let valid = true;
+    let isValid = true;
 
-    if (!experienceStatus.value) {
-        showError(experienceStatus);
-        valid = false;
+    const experienceStatus = document.querySelector('input[name="experienceStatus"]:checked');
+    const internshipStatus = document.querySelector('input[name="internshipStatus"]:checked');
+
+    // Validate Experience Status
+    if (!experienceStatus) {
+      showErrorMessage(experienceRadios[0].parentElement.parentElement.querySelector(".error"), "Select your experience status");
+      isValid = false;
     }
 
-    if (experienceStatus.value === "experienced") {
-        const required = [
-            "companyName", "jobTitle", "employeeType",
-            "startDate", "endDate", "lastCTC", "reasonForLeaving"
-        ];
-
-        required.forEach(id => {
-            const field = document.getElementById(id);
-            if (!field.value.trim()) {
-                showError(field);
-                valid = false;
-            }
-        });
+    // Experienced Validation
+    if (experienceStatus && experienceStatus.value === "Yes") {
+      if (companyName.value.trim().length < 2) { showError(companyName, "Enter company name"); isValid = false; }
+      if (jobTitle.value.trim().length < 2) { showError(jobTitle, "Enter job title"); isValid = false; }
+      if (!startDate.value) { showError(startDate, "Select start date"); isValid = false; }
+      if (!endDate.value && !currentlyWorking.checked) { showError(endDate, "Select end date"); isValid = false; }
+      if (startDate.value && endDate.value && new Date(startDate.value) > new Date(endDate.value)) {
+        showError(endDate, "End date must be after start date"); isValid = false;
+      }
+      if (responsibilities.value.trim().length < 5) { showError(responsibilities, "Enter responsibilities"); isValid = false; }
     }
 
-    if (experienceStatus.value === "fresher") {
-        if (!internshipStatus.value) {
-            showError(internshipStatus);
-            valid = false;
-        }
-
-        if (internshipStatus.value === "yes") {
-            ["internshipCompany", "internshipDuration"].forEach(id => {
-                const field = document.getElementById(id);
-                if (!field.value.trim()) {
-                    showError(field);
-                    valid = false;
-                }
-            });
-        }
+    // Internship Validation (if Fresher)
+    if (experienceStatus && experienceStatus.value === "No" && internshipStatus && internshipStatus.value === "Yes") {
+      if (internCompany.value.trim().length < 2) { showError(internCompany, "Enter internship company"); isValid = false; }
+      if (internRole.value.trim().length < 2) { showError(internRole, "Enter internship role"); isValid = false; }
+      if (internDuration.value.trim().length < 2) { showError(internDuration, "Enter internship duration"); isValid = false; }
     }
 
-    if (valid) {
-        let experienceData = {
-            experienceStatus: experienceStatus.value 
-        };
-
-        if (experienceStatus.value === "experienced") {
-            experienceData.companyName = companyName.value;
-            experienceData.role = jobTitle.value;            
-            experienceData.duration = totalExperience.value; 
-            experienceData.ctc = lastCTC.value;              
+    // Save to localStorage if valid
+    if (isValid) {
+      const page3Data = {
+        experienced: experienceStatus.value,
+        internshipCompleted: internshipStatus ? internshipStatus.value : null,
+        experience: {
+          companyName: companyName.value.trim(),
+          jobTitle: jobTitle.value.trim(),
+          startDate: startDate.value,
+          endDate: currentlyWorking.checked ? "Present" : endDate.value,
+          responsibilities: responsibilities.value.trim()
+        },
+        internship: {
+          company: internCompany.value.trim(),
+          role: internRole.value.trim(),
+          duration: internDuration.value.trim()
         }
+      };
 
-        if (experienceStatus.value === "fresher") {
-            experienceData.internshipCompany = internshipCompany?.value || "";
-            experienceData.internshipDuration = internshipDuration?.value || "";
-        }
-
-        localStorage.setItem("experienceInfo", JSON.stringify(experienceData));
-
-        alert("Experience details saved successfully!");
-        window.location.href = "review-details.html";
+      localStorage.setItem("employeePage3", JSON.stringify(page3Data));
+      alert("Page 3 validated and saved successfully!");
+      window.location.href = "review-details.html";
     }
+  });
 
-    window.addEventListener("DOMContentLoaded", () => {
-        const exp = JSON.parse(localStorage.getItem("experienceInfo"));
-        if (!exp) return;
+  /* --- UTIL FUNCTIONS --- */
+  function showError(input, message) {
+    input.classList.add("error-border");
+    const nextEl = input.nextElementSibling;
+    if (nextEl) nextEl.textContent = message;
+  }
 
-        experienceStatus.value = exp.experienceStatus || "";
+  function showErrorMessage(element, message) {
+    element.textContent = message;
+  }
 
-        experienceStatus.dispatchEvent(new Event("change"));
-
-        if (exp.experienceStatus === "experienced") {
-            companyName.value = exp.companyName || "";
-            jobTitle.value = exp.jobTitle || "";
-            totalExperience.value = exp.totalExperience || "";
-            lastCTC.value = exp.lastCTC || "";
-        }
-
-        if (exp.experienceStatus === "fresher") {
-            internshipStatus.value = exp.internshipStatus || "";
-            internshipStatus.dispatchEvent(new Event("change"));
-
-            internshipCompany.value = exp.internshipCompany || "";
-            internshipDuration.value = exp.internshipDuration || "";
-        }
-    });
+  function clearErrors() {
+    document.querySelectorAll(".error").forEach(e => e.textContent = "");
+    document.querySelectorAll(".error-border").forEach(e => e.classList.remove("error-border"));
+  }
 
 });
-

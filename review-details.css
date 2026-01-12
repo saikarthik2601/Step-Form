@@ -1,79 +1,85 @@
-* {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+/* Use same style as previous pages */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+:root {
+  --primary: #2563eb;
+  --danger: #dc2626;
+  --border: #e5e7eb;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --bg-page: #f4f7fb;
+  --bg-card: #ffffff;
 }
 
 body {
-    background: #f4f6f8;
-    padding: 20px;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: var(--bg-page);
+  color: var(--text-main);
+  padding: 32px 16px;
 }
 
-.container {
-    max-width: 750px;
-    margin: auto;
+form {
+  max-width: 860px;
+  margin: auto;
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 36px 40px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08),0 4px 10px rgba(0,0,0,0.04);
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 36px 0 22px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
 }
 
-.subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 25px;
+.review-section {
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
 }
 
-.card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.review-section div {
+  margin-bottom: 8px;
 }
 
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+.edit-btn {
+  margin-bottom: 24px;
+  padding: 10px 16px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
 }
 
-.card-header h3 {
-    margin: 0;
-    color: #333;
+.edit-btn:hover {
+  background: #1d4ed8;
 }
 
-.card-header button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
+#submitFormBtn {
+  margin-top: 32px;
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.card-header button:hover {
-    background: #0056b3;
-}
-
-.card-body p {
-    margin: 6px 0;
-    color: #444;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.submit-btn:hover {
-    background: #218838;
+#submitFormBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
 }

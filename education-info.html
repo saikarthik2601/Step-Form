@@ -1,87 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Employee Onboarding - Educational Details</title>
-    <link rel="stylesheet" href="education-info.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Onboarding – Education Details</title>
+  <link rel="stylesheet" href="education-info.css" />
 </head>
 <body>
 
-<div class="form-container">
-    <h2>Educational Details</h2>
+    <form id="educationForm" novalidate>
 
-    <form id="educationForm">
+    <!-- HIGHEST QUALIFICATION -->
+    <h2>Highest Qualification</h2>
+    <div class="form-grid">
 
-        <div class="section">
-            <h3>Qualification</h3>
-
-            <div class="row">
-                <div class="field">
-                    <select id="qualification">
-                        <option value="">Select Qualification</option>
-                        <option>10th</option>
-                        <option>12th</option>
-                        <option>Diploma</option>
-                        <option>Graduation</option>
-                        <option>Post Graduation</option>
-                    </select>
-                    <span class="error-msg"></span>
-                </div>
-                <div class="field">
-                    <input type="text" id="course" placeholder="Course">
-                    <span class="error-msg"></span>
-                </div>
-            </div>
-
-            <input type="text" id="branch" placeholder="Branch / Specialization">
-            <span class="error-msg"></span>
+        <div class="form-group">
+        <label>Qualification</label>
+        <select id="qualification">
+            <option value="">Select</option>
+            <option value="High School">High School</option>
+            <option value="Diploma">Diploma</option>
+            <option value="Graduation">Graduation</option>
+            <option value="Post-Graduation">Post-Graduation</option>
+            <option value="PhD">PhD</option>
+        </select>
+        <small class="error"></small>
         </div>
 
-        <div class="section">
-            <h3>Institution Details</h3>
-
-            <div class="row">
-                <div class="field">
-                    <select id="institutionType">
-                        <option value="">Select Institution Type</option>
-                        <option>College</option>
-                        <option>University</option>
-                    </select>
-                    <span class="error-msg"></span>
-                </div>
-                <div class="field">
-                    <input type="text" id="institutionName" placeholder="College / University Name">
-                    <span class="error-msg"></span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="field">
-                    <input type="text" id="location" placeholder="Location (City, State)">
-                    <span class="error-msg"></span>
-                </div>
-            </div>
+        <div class="form-group">
+        <label>Stream / Field</label>
+        <input type="text" id="stream">
+        <small class="error"></small>
         </div>
 
-        <div class="section">
-            <h3>Academic Details</h3>
-
-            <div class="row">
-                <div class="field">
-                    <input type="number" id="yearOfPass" placeholder="Year of Passing">
-                    <span class="error-msg"></span>
-                </div>
-                <div class="field">
-                    <input type="text" id="percentage" placeholder="Percentage / CGPA">
-                    <span class="error-msg"></span>
-                </div>
-            </div>
+        <div class="form-group">
+        <label>Passing Year</label>
+        <input type="number" id="passingYear" min="1900" max="2100">
+        <small class="error"></small>
         </div>
 
-        <button type="submit">Next</button>
+        <div class="form-group">
+        <label>Percentage / CGPA</label>
+        <input type="number" id="percentage" step="0.01" min="0" max="100">
+        <small class="error"></small>
+        </div>
+
+    </div>
+
+    <!-- GRADUATION / POST-GRADUATION -->
+    <h2>Graduation / Post-Graduation Details</h2>
+    <div class="form-grid">
+
+        <div class="form-group">
+        <label>College / University</label>
+        <input type="text" id="college">
+        <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+        <label>Course Name</label>
+        <input type="text" id="courseName">
+        <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+        <label>Passing Year</label>
+        <input type="number" id="gradPassingYear" min="1900" max="2100">
+        <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+        <label>Percentage / CGPA</label>
+        <input type="number" id="gradPercentage" step="0.01" min="0" max="100">
+        <small class="error"></small>
+        </div>
+
+    </div>
+
+    <!-- CERTIFICATIONS / OTHER EDUCATION -->
+    <h2>Certifications / Other Education (Optional)</h2>
+    <div class="form-grid">
+
+        <div class="form-group">
+        <label>Certification Name</label>
+        <input type="text" id="certName">
+        </div>
+
+        <div class="form-group">
+        <label>Institute</label>
+        <input type="text" id="instName">
+        </div>
+
+        <div class="form-group">
+        <label>Year</label>
+        <input type="number" id="certYear" min="1900" max="2100">
+        </div>
+
+    </div>
+
+    <button type="submit">Next</button>
+
     </form>
-</div>
 
-<script src="education-info.js"></script>
+    <script src="education-info.js" defer></script>
 </body>
 </html>

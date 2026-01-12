@@ -1,120 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Experience Details</title>
-    <link rel="stylesheet" href="experience-info.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Onboarding - Experience</title>
+  <link rel="stylesheet" href="experience-info.css" />
 </head>
 <body>
 
-<div class="form-container">
-    <h2>Experience Details</h2>
+    <form id="experienceForm" novalidate>
 
-    <form id="experienceForm">
-
-        <div class="section">
-            <h3>Experience Status</h3>
-
-            <div class="field">
-                <select id="experienceStatus">
-                    <option value="">Select Status</option>
-                    <option value="fresher">Fresher</option>
-                    <option value="experienced">Experienced</option>
-                </select>
-                <small class="error-msg"></small>
-            </div>
+    <!-- EXPERIENCE STATUS -->
+    <h2>Experience Status</h2>
+    <div class="form-grid full-width">
+        <div class="form-group">
+        <label>Are you experienced?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="experienceStatus" value="Yes"> Yes</label>
+            <label><input type="radio" name="experienceStatus" value="No"> No</label>
         </div>
-
-        <!-- EXPERIENCED -->
-        <div id="experiencedSection" style="display:none;">
-
-            <div class="section">
-                <h3>Experience</h3>
-
-                <div class="field">
-                    <input type="text" id="companyName" placeholder="Company Name">
-                    <small class="error-msg"></small>
-                </div>
-
-                <div class="field">
-                    <input type="text" id="jobTitle" placeholder="Job Title / Designation">
-                    <small class="error-msg"></small>
-                </div>
-
-                <div class="field">
-                    <input type="text" id="employeeType" placeholder="Employee Type (Full-Time / Contract)">
-                    <small class="error-msg"></small>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3>Duration</h3>
-
-                <div class="row">
-                    <div class="field">
-                        <input type="date" id="startDate">
-                        <small class="error-msg"></small>
-                    </div>
-
-                    <div class="field">
-                        <input type="date" id="endDate">
-                        <small class="error-msg"></small>
-                    </div>
-                </div>
-
-                <div class="field">
-                    <input type="text" id="totalExperience" placeholder="Total Experience (Years)" readonly>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3>Compensation</h3>
-
-                <div class="field">
-                    <input type="text" id="lastCTC" placeholder="Last CTC">
-                    <small class="error-msg"></small>
-                </div>
-
-                <div class="field">
-                    <input type="text" id="reasonForLeaving" placeholder="Reason for Leaving">
-                    <small class="error-msg"></small>
-                </div>
-            </div>
+        <small class="error"></small>
         </div>
-
-        <!-- FRESHER -->
-        <div id="fresherSection" style="display:none;">
-
-            <div class="section">
-                <h3>Internship Experience</h3>
-
-                <div class="field">
-                    <select id="internshipStatus">
-                        <option value="">Internship Experience (Yes / No)</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                    <small class="error-msg"></small>
-                </div>
-
-                <div id="internshipDetails" style="display:none;">
-                    <div class="field">
-                        <input type="text" id="internshipCompany" placeholder="Internship Company Name">
-                        <small class="error-msg"></small>
-                    </div>
-
-                    <div class="field">
-                        <input type="text" id="internshipDuration" placeholder="Internship Duration">
-                        <small class="error-msg"></small>
-                    </div>
-                </div>
-            </div>
+        <div class="form-group" id="internshipSection" style="display:none;">
+        <label>Have you completed any internship?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="internshipStatus" value="Yes"> Yes</label>
+            <label><input type="radio" name="internshipStatus" value="No"> No</label>
         </div>
+        <small class="error"></small>
+        </div>
+    </div>
 
-        <button type="submit">Next</button>
+    <!-- PROFESSIONAL EXPERIENCE -->
+    <div id="experienceDetails" style="display:none;">
+        <h2>Professional Experience</h2>
+        <div class="form-grid">
+        <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" id="companyName">
+            <small class="error"></small>
+        </div>
+        <div class="form-group">
+            <label>Job Title</label>
+            <input type="text" id="jobTitle">
+            <small class="error"></small>
+        </div>
+        <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" id="startDate">
+            <small class="error"></small>
+        </div>
+        <div class="form-group">
+            <label>End Date</label>
+            <input type="date" id="endDate">
+            <small class="error"></small>
+        </div>
+        <div class="form-group full-width">
+            <label>Responsibilities</label>
+            <textarea id="responsibilities"></textarea>
+            <small class="error"></small>
+        </div>
+        <div class="form-group full-width checkbox-group">
+            <label><input type="checkbox" id="currentlyWorking"> Currently working here</label>
+        </div>
+        </div>
+    </div>
+
+    <!-- INTERNSHIP DETAILS -->
+    <div id="internshipDetails" style="display:none;">
+        <h2>Internship Details</h2>
+        <div class="form-grid">
+        <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" id="internCompany">
+            <small class="error"></small>
+        </div>
+        <div class="form-group">
+            <label>Role</label>
+            <input type="text" id="internRole">
+            <small class="error"></small>
+        </div>
+        <div class="form-group">
+            <label>Duration</label>
+            <input type="text" id="internDuration">
+            <small class="error"></small>
+        </div>
+        </div>
+    </div>
+
+    <button type="submit">Next</button>
+
     </form>
-</div>
 
-<script src="experience-info.js"></script>
+    <script src="experience-info.js" defer></script>
 </body>
 </html>
