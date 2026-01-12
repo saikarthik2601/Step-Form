@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  /* --- UTIL FUNCTIONS --- */
+  /* UTIL FUNCTIONS */
   function showError(input, message) {
     input.classList.add("error-border");
     const nextEl = input.nextElementSibling;
