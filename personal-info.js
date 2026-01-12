@@ -5,9 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const permanentAddress = document.getElementById("permanentAddress");
   const sameAddress = document.getElementById("sameAddress");
 
-  /* ===============================
-     REAL-TIME ADDRESS SYNC
-  ================================ */
+  /* REAL-TIME ADDRESS SYNC */
   sameAddress.addEventListener("change", function () {
     if (this.checked) {
       permanentAddress.value = currentAddress.value;
@@ -24,9 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  /* ===============================
-     FORM SUBMIT VALIDATION & SAVE
-  ================================ */
+  /* FORM SUBMIT VALIDATION & SAVE */
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     clearErrors();
@@ -41,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const relationship = document.getElementById("relationship");
     const emergencyMobile = document.getElementById("emergencyMobile");
 
-    /* --- VALIDATIONS --- */
+    /* VALIDATIONS */
     if (!/^[A-Za-z ]{2,}$/.test(fullName.value.trim())) {
       showError(fullName, "Enter a valid full name");
       isValid = false;
@@ -92,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
       isValid = false;
     }
 
-    /* --- SAVE TO localStorage IF VALID --- */
+    /* SAVE TO localStorage IF VALID */
     if (isValid) {
       const page1Data = {
         fullName: fullName.value.trim(),
@@ -110,9 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       localStorage.setItem("employeePage1", JSON.stringify(page1Data));
 
-      /* ===============================
-         🔥 AUTO REDIRECT LOGIC (ADDED)
-      ================================ */
+      /* AUTO REDIRECT LOGIC */
       const editMode = localStorage.getItem("editMode");
 
       if (editMode === "true") {
@@ -126,9 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-/* ===============================
-   UTIL FUNCTIONS
-================================ */
+/* UTIL FUNCTIONS */
 function showError(input, message) {
   input.classList.add("error-border");
   input.nextElementSibling.textContent = message;
