@@ -1,9 +1,4 @@
-/* ===============================
-   RESET & VARIABLES
-================================ */
-*,
-*::before,
-*::after {
+*{
   box-sizing: border-box;
 }
 
@@ -17,9 +12,7 @@
   --bg-card: #ffffff;
 }
 
-/* ===============================
-   BASE
-================================ */
+/* BASE */
 body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
@@ -28,9 +21,7 @@ body {
   padding: 32px 16px;
 }
 
-/* ===============================
-   FORM CARD
-================================ */
+/* FORM CARD */
 form {
   max-width: 860px;
   margin: auto;
@@ -42,9 +33,7 @@ form {
     0 4px 10px rgba(0, 0, 0, 0.04);
 }
 
-/* ===============================
-   SECTION HEADINGS
-================================ */
+/* SECTION HEADINGS */
 h2 {
   font-size: 20px;
   font-weight: 600;
@@ -57,9 +46,7 @@ h2:first-of-type {
   margin-top: 0;
 }
 
-/* ===============================
-   GRID SYSTEM
-================================ */
+/* GRID SYSTEM */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -70,17 +57,13 @@ h2:first-of-type {
   grid-column: 1 / -1;
 }
 
-/* ===============================
-   FORM GROUP
-================================ */
+/* FORM GROUP */
 .form-group {
   display: flex;
   flex-direction: column;
 }
 
-/* ===============================
-   LABELS
-================================ */
+/* LABELS */
 label {
   font-size: 13px;
   font-weight: 500;
@@ -88,9 +71,7 @@ label {
   color: var(--text-muted);
 }
 
-/* ===============================
-   INPUTS
-================================ */
+/* INPUTS */
 input,
 textarea,
 select {
@@ -118,9 +99,7 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
-/* ===============================
-   ERROR STYLES
-================================ */
+/* ERROR STYLES */
 .error {
   margin-top: 6px;
   font-size: 12px;
@@ -135,9 +114,7 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
 }
 
-/* ===============================
-   BUTTON
-================================ */
+/* BUTTON */
 button {
   margin-top: 36px;
   width: 100%;
@@ -162,9 +139,7 @@ button:active {
   box-shadow: none;
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
+/* RESPONSIVE */
 @media (max-width: 900px) {
   form {
     padding: 28px 24px;

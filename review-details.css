@@ -1,7 +1,4 @@
-/* Use same style as previous pages */
-*,
-*::before,
-*::after { box-sizing: border-box; }
+*{ box-sizing: border-box; }
 
 :root {
   --primary: #2563eb;
